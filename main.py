@@ -50,8 +50,6 @@ async def guess_word(request:Request, db: Session = Depends(get_db)):
     username = data.get('username')
     guessed_word = data.get('content')
     print(f"username: {username}, guessed_word: {guessed_word}")
-    db.add(GuessWord(content=guessed_word))
-    db.commit()
     storage = StorageImplementation()
     interactor = MatchWordInteractor(storage=storage)
     storage.store_guessed_word(username=username, guessed_word=guessed_word)
